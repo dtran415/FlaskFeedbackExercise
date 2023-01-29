@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{user.first_name}} {{user.last_name}}</h1>
+<p>Username: {{user.username}}</p>
+<p>Email: {{user.email}}</p>
+
+<form action='/users/{{user.username}}/delete' method='POST'>
+    <button class='btn btn-danger'>Delete User</button>
+</form>
+<br>
+<form action='/users/{{user.username}}/feedback/add' method='POST'>
+    {% include "_form.html" %}
+    <button class="btn btn-success">Add Feedback</button>
+</form>
+<br>
+<h2>Feedback</h2>
+<ul>
+    {% for fb in feedback %}
+    <li>
+        <p>{{fb.title}}</p>
+        <p>{{fb.content}}</p>
+        <form>
+            <form>
+                <button class='btn btn-primary'
+                    formaction='/feedback/{{fb.id}}/update'
+                    formmethod='GET'>Edit</button>
+                <button class='btn btn-danger'
+                    formaction='/feedback/{{fb.id}}/delete'
+                    formmethod='POST'>Delete</button>
+            </form>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

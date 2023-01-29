@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Feedback</h1>
+<form action="/feedback/{{feedback.id}}/update" method="POST">
+    {% include "_form.html" %}
+
+    <button class="btn btn-success">Update</button>
+</form>
+{% endblock %}
